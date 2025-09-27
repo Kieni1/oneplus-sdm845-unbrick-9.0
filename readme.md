@@ -1,4 +1,4 @@
-### unbricking oneplus6 with pyhton3-edl
+### unbricking oneplus6 with python3-edl
 
 - this guide is for oneplus6 only
 - we don't have guide for oneplus6t yet
