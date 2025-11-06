@@ -17,6 +17,7 @@ jobs:
           bash build/build_${{ matrix.variant }}.sh
       - uses: actions/upload-artifact@v4
         with:
+          name: oneplus_${{ matrix.variant }}
           path: oneplus_${{ matrix.variant }}.7z
       - uses: svenstaro/upload-release-action@v2
         with:
