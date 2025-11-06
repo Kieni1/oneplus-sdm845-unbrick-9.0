@@ -10,4 +10,4 @@ python oppo_decrypt/opscrypto.py decrypt enchilada_22_J.50_210121/enchilada_22_J
 mv enchilada_22_J.50_210121/extract images
 env --chdir=images python ../build/patch.py
 install -Dm 0755 build/flash.sh flash.sh
-7z a -mx9 oneplus6_stock.7z flash.sh images
+7z a -mx9 oneplus_enchilada.7z flash.sh images

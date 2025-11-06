@@ -6,19 +6,22 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        variant: [enchilada, fajita]
     steps:
       - uses: actions/checkout@v4
       - run: |
           curl -L https://7-zip.org/a/7z2501-linux-x64.tar.xz | tar -xJf -
           sudo cp 7zzs /bin/7z
-          bash build/build.sh
+          bash build/build_${{ matrix.variant }}.sh
       - uses: actions/upload-artifact@v4
         with:
-          path: oneplus6_stock.7z
+          path: oneplus_${{ matrix.variant }}.7z
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: oneplus6_stock.7z
+          file: oneplus_${{ matrix.variant }}.7z
           tag: 10.3.8
           overwrite: true
           body: 'archive built by `.github/workflows/build.yml`'

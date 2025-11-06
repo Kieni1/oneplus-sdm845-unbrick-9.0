@@ -1,7 +1,4 @@
-### unbricking oneplus6 with python3-edl
-
-- this guide is for oneplus6 only
-- we don't have guide for oneplus6t yet
+### unbricking oneplus6(t) with python3-edl
 
 ### installing python3-edl on fedora
 
@@ -22,7 +19,7 @@ rpm-ostree install python3-edl
 
 ### flashing
 
-- download archive from releases
+- download the correct archive from releases (oneplus6 = enchilada, oneplus6t = fajita)
 - unarchive it
 - poweroff device, press both volume buttons, connect device to pc, device will go to edl mode
 - run `bash flash.sh`
