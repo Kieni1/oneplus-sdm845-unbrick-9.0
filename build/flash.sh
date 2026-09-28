@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
 
-set -ux
+set -uexo pipefail
 which edl
 
-edl qfil rawprogram0.xml patch0.xml images
-edl qfil rawprogram1.xml patch1.xml images
-edl qfil rawprogram2.xml patch2.xml images
-edl qfil rawprogram3.xml patch3.xml images
-edl qfil rawprogram4.xml patch4.xml images
-edl qfil rawprogram5.xml patch5.xml images
+shopt -s nullglob
+pairs=(rawprogram*.xml)
+if [[ ${#pairs[@]} -eq 0 ]]; then
+    echo "No rawprogram*.xml files found -- did patch.py run first?" >&2
+    exit 1
+fi
+
+for rawprogram in "${pairs[@]}"; do
+    n=${rawprogram#rawprogram}
+    n=${n%.xml}
+    patch="patch${n}.xml"
+    if [[ ! -f "$patch" ]]; then
+        echo "Missing $patch for $rawprogram -- refusing to flash a partial set" >&2
+        exit 1
+    fi
+    edl qfil "$rawprogram" "$patch" images
+done
